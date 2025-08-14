@@ -2,9 +2,11 @@ package oi.curso.avaliador.msAvaliadorCredito.service;
 
 import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import oi.curso.avaliador.msAvaliadorCredito.config.SolicEmisCardPublisher;
 import oi.curso.avaliador.msAvaliadorCredito.entity.*;
 import oi.curso.avaliador.msAvaliadorCredito.ex.DadosClienteException;
 import oi.curso.avaliador.msAvaliadorCredito.ex.ComunicationMSException;
+import oi.curso.avaliador.msAvaliadorCredito.ex.ErroSolicCartoesException;
 import oi.curso.avaliador.msAvaliadorCredito.infra.CartoesClients;
 import oi.curso.avaliador.msAvaliadorCredito.infra.ClienteClients;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,6 +25,7 @@ public class AvaliadorCredService {
 
     private final ClienteClients clienteClient;
     private final CartoesClients cartoesClient;
+    private final SolicEmisCardPublisher emisCardPublisher;
 
     public SituacaoCliente obterSituacaoCliente(String cpf)
             throws DadosClienteException, ComunicationMSException {
@@ -84,6 +88,15 @@ public class AvaliadorCredService {
             throw new ComunicationMSException(e.getMessage(), status);
 
         }
+    }
 
+    public ProtocoloSolicCartao solicitarEmissaoCartao(DadosSolicitacaoEmissaoCartoes dados) {
+        try {
+            emisCardPublisher.solicitarCartao(dados);
+            var protocolo = UUID.randomUUID().toString();
+            return new ProtocoloSolicCartao(protocolo);
+        } catch (Exception e) {
+            throw new ErroSolicCartoesException(e.getMessage());
+        }
     }
 }

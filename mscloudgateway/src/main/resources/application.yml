@@ -6,6 +6,12 @@ spring:
       discovery:
         enabled: true
         lower-case-service-id: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer: http://localhost:8081/realms/mscorsorealm
+
 
 server:
   port: 8080

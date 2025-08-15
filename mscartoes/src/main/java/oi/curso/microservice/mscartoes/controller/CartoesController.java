@@ -1,6 +1,7 @@
 package oi.curso.microservice.mscartoes.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import oi.curso.microservice.mscartoes.dto.CartoesDTO;
 import oi.curso.microservice.mscartoes.dto.ClienteCartoesDTO;
 import oi.curso.microservice.mscartoes.entity.Cartoes;
@@ -8,24 +9,30 @@ import oi.curso.microservice.mscartoes.entity.Cartoes;
 import oi.curso.microservice.mscartoes.entity.ClinteCartoes;
 import oi.curso.microservice.mscartoes.service.CartoesService;
 import oi.curso.microservice.mscartoes.service.ClienteCartoesService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @RestController
 @RequestMapping("cartoes")
 @RequiredArgsConstructor
+
 public class CartoesController {
+
+
 
     private final CartoesService cartoesService;
     private final ClienteCartoesService clienteCartoesService;
 
     @GetMapping
     public String status() {
+        log.info("Obtendo status ms Cartoes");
         return "ok";
     }
 

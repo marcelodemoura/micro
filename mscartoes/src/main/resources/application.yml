@@ -13,14 +13,13 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://cursoms-eureka-user:M1c9j812@localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 
 mq:
   queues:
     emissao-cartoes: emissao-cartoes
-
 
 management:
   endpoints:
@@ -31,3 +30,5 @@ management:
 logging:
   file:
     name: ./logs/log-file.log
+
+

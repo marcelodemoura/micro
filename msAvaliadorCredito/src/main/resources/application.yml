@@ -3,8 +3,6 @@ spring:
     name: msAvaliadorCredito
   rabbitmq:
     host: ${RABBITMQ_SERVER}
-#    host: localhost
-#    port: 5672
     username: guest
     password: guest
 

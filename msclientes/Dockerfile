@@ -6,5 +6,7 @@ RUN ./mvnw clean package -DskipTests
 FROM openjdk:17
 WORKDIR /app
 COPY --from=build /app/target/*-SNAPSHOT.jar app.jar
-EXPOSE 8761
+
+ARG EUREKA_SERVER=localhost
+
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -10,7 +10,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer: http://localhost:8081/realms/mscorsorealm
+          issuer: http://${KEYCLOAK_SERVER}:${KEYCLOAK_PORT}/realms/mscorsorealm
 
 
 server:
@@ -21,4 +21,4 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://cursoms-eureka-user:M1c9j812@localhost:8761/eureka
+      defaultZone: http://cursoms-eureka-user:M1c9j812@${EUREKA_SERVER}:8761/eureka

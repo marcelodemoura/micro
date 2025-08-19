@@ -2,8 +2,9 @@ spring:
   application:
     name: msAvaliadorCredito
   rabbitmq:
-    host: localhost
-    port: 5672
+    host: ${RABBITMQ_SERVER}
+#    host: localhost
+#    port: 5672
     username: guest
     password: guest
 
@@ -13,7 +14,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://cursoms-eureka-user:M1c9j812@localhost:8761/eureka
+      defaultZone: http://cursoms-eureka-user:M1c9j812@${EUREKA_SERVER}:8761/eureka
     register-with-eureka: true
     fetch-registry: true
   instance:

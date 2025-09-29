@@ -1,8 +1,11 @@
 spring:
   application:
     name: msAvaliadorCredito
+  profile:
+    active: local
   rabbitmq:
-    host: ${RABBITMQ_SERVER}
+    host: localhost
+#    host: ${RABBITMQ_SERVER}
     username: guest
     password: guest
 

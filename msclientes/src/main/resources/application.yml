@@ -1,6 +1,8 @@
 spring:
   application:
     name: msclientes
+  profile:
+      active: local
 
 server:
   port: 0
@@ -8,7 +10,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://cursoms-eureka-user:M1c9j812@${EUREKA_SERVER}:8761/eureka
+      defaultZone: http://cursoms-eureka-user:M1c9j812@localhost:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
 

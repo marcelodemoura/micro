@@ -5,6 +5,8 @@ import io.curso.microservice.msclientes.dto.ClienteSaveRequest;
 import io.curso.microservice.msclientes.entity.Cliente;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,12 +17,13 @@ import java.net.URI;
 @RequestMapping("clientes")
 @RequiredArgsConstructor
 @Slf4j
-public class ClienteController {
+class ClienteController {
 
+    private static final Logger log = LoggerFactory.getLogger(ClienteController.class);
     private final ClienteService service;
 
     @GetMapping
-    public String status(){
+    public String status() {
         log.info("status do msclientes");
         return "ok";
     }
